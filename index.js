@@ -1,6 +1,18 @@
 const chalk = require ('chalk');
 const fs = require ('fs');
 
+
+function linkExtract (text){
+    const regex = /\[([^\]]*)\]\((https?:\/\/[^$#\s]*.[^\s]*)\)/gm
+    const resultedArr = [];
+    let temp;
+    while((temp = regex.exec(text)) !== null){
+       resultedArr.push({[temp[1]]:temp[2]}) 
+    }
+    return resultedArr;
+}
+
+
 function errHandling (err){
     throw new Error(chalk.red(err.code, 'não há arquivo no diretorio'));
 }
@@ -10,7 +22,7 @@ async function getFile (filePath){
     
     try{
         const text = await fs.promises.readFile(filePath,enconding);
-        console.log(chalk.green(text))
+        console.log(linkExtract(text))
     } catch(err){
         errHandling(err)
     }
@@ -18,11 +30,12 @@ async function getFile (filePath){
 
 
 
-const txtErr = './arquivos/';
+// const txtErr = './arquivos/';
 const txtMarkdown = './arquivos/texto.md';
 
 getFile(txtMarkdown);
-// getFile(txtErr)
+// // getFile(txtErr)
+
 
 
 
