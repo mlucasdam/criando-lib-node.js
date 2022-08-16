@@ -1,5 +1,11 @@
+const chalk = require('chalk');
 const getFile = require ('./index');
 
 const path = process.argv;
 
-console.log(getFile(path[2]));
+async function txtProcess (filePath){
+    const result = await getFile(filePath[2]);
+    console.log(chalk.yellow('lista de Links'), result);
+}
+
+txtProcess(path)
