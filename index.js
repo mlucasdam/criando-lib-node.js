@@ -31,12 +31,12 @@ async function getFile (filePath){
 
 
 // const txtErr = './arquivos/';
-const txtMarkdown = './arquivos/texto.md';
+// const txtMarkdown = './arquivos/texto.md';
 
-getFile(txtMarkdown);
+// getFile(txtMarkdown);
 // // getFile(txtErr)
 
-
+module.exports = getFile;
 
 
 
