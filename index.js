@@ -20,11 +20,14 @@ function errHandling (err){
 async function getFile (filePath){
     const enconding = 'utf-8';
     const absolutePath = path.join(__dirname, '.', filePath)
-    
     try{
         const files = await fs.promises.readdir(absolutePath,{enconding});
-        console.log('arquivos', files)
-        return linkExtract(files);
+        const result = await Promise.all(files.map(async (file) =>{
+            const pathFile = `${absolutePath}/${file}`;
+            const text = await fs.promises.readFile(pathFile, enconding);
+            return linkExtract(text)
+        }));
+        return result;
     } catch(err){
         errHandling(err)
     }
