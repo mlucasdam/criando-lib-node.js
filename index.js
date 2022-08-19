@@ -33,14 +33,6 @@ async function getFile (filePath){
     }
 }
 
-
-
-// const txtErr = './arquivos/';
-// const txtMarkdown = './arquivos/texto.md';
-
-// getFile(txtMarkdown);
-// // getFile(txtErr)
-
 module.exports = getFile;
 
 
