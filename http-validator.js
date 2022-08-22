@@ -22,7 +22,11 @@ async function statusCheck (arrUrls){
 }}
 
 function urlArrGenerator (arrLinks){
-    return arrLinks.map(links => links.map(objlink => Object.values(objlink).join()))
+    return arrLinks
+    .map(links => links
+        .map(objlink => Object
+            .values(objlink)
+            .join()))
 }
 
 function combineStatusLink (links, status){
@@ -32,7 +36,8 @@ function combineStatusLink (links, status){
 
     for (i = 0; i < links.length; i++){
         for (j = 0; j < links[i].length; j++){
-            linkPerFile.push({url: l[i][j], status: s[i][j]});
+            linkPerFile
+            .push({url: l[i][j], status: s[i][j]});
         }
     }
     return linkPerFile;

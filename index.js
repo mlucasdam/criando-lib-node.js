@@ -17,14 +17,13 @@ function errHandling (err){
     throw new Error(chalk.red(err.code, 'não há arquivo no diretorio'));
 }
 
-async function getFile (filePath){
-    const enconding = 'utf-8';
-    const absolutePath = path.join(__dirname, '.', filePath)
+async function getFile (filePath){ 
+    const absolutePath = path.join("__dirname", "..", filePath)
     try{
-        const files = await fs.promises.readdir(absolutePath,{enconding});
+        const files = await fs.promises.readdir(absolutePath, enconding = 'utf-8');
         const result = await Promise.all(files.map(async (file) =>{
-            const pathFile = `${absolutePath}/${file}`;
-            const text = await fs.promises.readFile(pathFile, enconding);
+            const localFile = `${absolutePath}/${file}`;
+            const text = await fs.promises.readFile(localFile, enconding = 'utf-8');
             return linkExtract(text)
         }));
         return result;
