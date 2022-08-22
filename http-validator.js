@@ -19,23 +19,10 @@ async function statusCheck (arrUrls){
         return statusArr; 
     }catch(err){
         errHandling(err);
-    }finally{
-        console.log(chalk.green("Finished operation\n"));
-    }
-}
+}}
 
 function urlArrGenerator (arrLinks){
-    let curr =0;
-    let arrResult = [];
-
-    while (curr<arrLinks.length){
-        let arrCurr = arrLinks[curr];
-        arrResult
-            .push(arrCurr
-                .map(objLink => Object
-                    .values(objLink).join()))
-    }
-    return arrResult
+    return arrLinks.map(links => links.map(objlink => Object.values(objlink).join()))
 }
 
 function combineStatusLink (links, status){
@@ -53,7 +40,7 @@ function combineStatusLink (links, status){
 
 async function validateUrl (arrLinks){
    const links = await urlArrGenerator(arrLinks);
-   const statusLinks =  await statusCheck(links);
+   const statusLinks = await statusCheck(links);
    return combineStatusLink (links, statusLinks);
 }
 

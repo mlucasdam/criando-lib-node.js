@@ -1,7 +1,8 @@
+#!/usr/bin/env node
+
 const validateUrl = require('./http-validator')
 const chalk = require('chalk');
 const getFile = require ('./index');
-
 const path = process.argv;
 
 async function txtProcess (filePath){
